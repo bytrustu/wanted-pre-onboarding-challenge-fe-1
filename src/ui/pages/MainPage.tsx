@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { Layout } from '../layout';
+
 const MainPage = () => (
-  <div>
+  <Layout>
     MainPage
-  </div>
+  </Layout>
 );
 
 export default MainPage;

@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { Layout } from '../layout';
+
 const SignInPage = () => (
-  <div>
+  <Layout>
     SignInPage
-  </div>
+  </Layout>
 );
 
 export default SignInPage;
