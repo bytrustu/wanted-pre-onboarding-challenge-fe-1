@@ -8,12 +8,12 @@ import React, {
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Layout } from '../layout';
+import { Layout } from '../components/layout';
 import {
   Button,
   TextField,
   Flex,
-} from '../common';
+} from '../components/common';
 import { getValidationUser } from '../../lib/utils';
 import {
   UserParam,

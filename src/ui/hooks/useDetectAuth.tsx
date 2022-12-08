@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { PATH } from '../const/path';
-import { getHasAccessToken } from '../utils/accessTokenStore';
+import { PATH } from '../../lib/const/path';
+import { getHasAccessToken } from '../../lib/utils/accessTokenStore';
 
 const useDetectAuth = () => {
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Router from './Router';
 import GlobalStyles from './ui/core/GlobalStyles';
-import useDetectAuth from './lib/hooks/useDetectAuth';
+import useDetectAuth from './ui/hooks/useDetectAuth';
 
 const App = () => {
   useDetectAuth();

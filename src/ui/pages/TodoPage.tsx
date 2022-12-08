@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Layout } from '../layout';
+import { Layout } from '../components/layout';
 
 const TodoPage = () => (
   <Layout>
