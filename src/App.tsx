@@ -1,9 +1,9 @@
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       Init React
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
