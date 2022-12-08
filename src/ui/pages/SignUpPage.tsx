@@ -16,6 +16,7 @@ import {
   UserValidation,
 } from '../../lib/types/user.interface';
 import authRest from '../../lib/api/authRest';
+import { PATH } from '../../lib/const/path';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const SignUpPage = () => {
   );
 
   const handleClickPrev = useCallback(() => {
-    navigate('/', { replace: true });
+    navigate(PATH.SIGN_IN, { replace: true });
   }, []);
 
   const onChangeUser = useCallback((e: ChangeEvent<HTMLInputElement>) => {

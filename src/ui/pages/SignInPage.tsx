@@ -21,6 +21,7 @@ import {
 } from '../../lib/types/user.interface';
 import authRest from '../../lib/api/authRest';
 import { setAccessToken } from '../../lib/utils/accessTokenStore';
+import { PATH } from '../../lib/const/path';
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -55,7 +56,7 @@ const SignInPage = () => {
       const { access_token } = response.data;
       setAccessToken(access_token);
       alert('로그인 되었습니다.');
-      navigate('/todo', { replace: true });
+      navigate(PATH.TODO, { replace: true });
     } catch (e: any) {
       const errorMessage = e.response?.data?.message ?? '로그인에 실패했습니다.';
       alert(errorMessage);
@@ -63,7 +64,7 @@ const SignInPage = () => {
   }, [user]);
 
   const handleClickSignUp = useCallback(() => {
-    navigate('/signup');
+    navigate(PATH.SIGN_UP);
   }, []);
 
   const onPressEnter = useCallback(async (e: KeyboardEvent<HTMLInputElement>) => {
