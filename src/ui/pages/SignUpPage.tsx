@@ -40,7 +40,7 @@ const SignUpPage = () => {
   );
 
   const handleClickPrev = useCallback(() => {
-    navigate(-1);
+    navigate('/', { replace: true });
   }, []);
 
   const onChangeUser = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -70,7 +70,7 @@ const SignUpPage = () => {
     try {
       await authRest.postSignUp(user);
       alert('회원가입이 완료 되었습니다.');
-      navigate('/');
+      handleClickPrev();
     } catch (e: any) {
       const errorMessage = e.response?.data?.message ?? '회원가입에 실패했습니다.';
       alert(errorMessage);

@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Layout } from '../layout';
 
-const MainPage = () => (
+const TodoPage = () => (
   <Layout>
-    MainPage
+    TodoPage
   </Layout>
 );
 
-export default MainPage;
+export default TodoPage;

@@ -19,6 +19,8 @@ import {
   UserParam,
   UserValidation,
 } from '../../lib/types/user.interface';
+import authRest from '../../lib/api/authRest';
+import { setAccessToken } from '../../lib/utils/accessTokenStore';
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -48,7 +50,16 @@ const SignInPage = () => {
   }, []);
 
   const onClickSignIn = useCallback(async () => {
-    // TODO: 로그인 API 연동
+    try {
+      const response = await authRest.postSignIn(user);
+      const { access_token } = response.data;
+      setAccessToken(access_token);
+      alert('로그인 되었습니다.');
+      navigate('/todo', { replace: true });
+    } catch (e: any) {
+      const errorMessage = e.response?.data?.message ?? '로그인에 실패했습니다.';
+      alert(errorMessage);
+    }
   }, [user]);
 
   const handleClickSignUp = useCallback(() => {
