@@ -15,6 +15,7 @@ import {
   UserParam,
   UserValidation,
 } from '../../lib/types/user.interface';
+import authRest from '../../lib/api/authRest';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -66,8 +67,15 @@ const SignUpPage = () => {
   }, [user]);
 
   const onClickSignUp = useCallback(async () => {
-    // TODO: 회원가입 API 연동
-  }, []);
+    try {
+      await authRest.postSignUp(user);
+      alert('회원가입이 완료 되었습니다.');
+      navigate('/');
+    } catch (e: any) {
+      const errorMessage = e.response?.data?.message ?? '회원가입에 실패했습니다.';
+      alert(errorMessage);
+    }
+  }, [user]);
 
   return (
     <Layout>
