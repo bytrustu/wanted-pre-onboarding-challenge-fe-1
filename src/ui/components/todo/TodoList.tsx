@@ -6,14 +6,14 @@ import TodoItem from './TodoItem';
 
 interface Props {
   todos: Todo[];
-  onToggleDone: any;
+  onToggleisCompleted: (id: number) => void;
   onClickDelete: (id: number) => void;
   onClickEdit: any;
 }
 
 const TodoList = ({
   todos,
-  onToggleDone,
+  onToggleisCompleted,
   onClickDelete,
   onClickEdit,
 }: Props) => (
@@ -23,7 +23,7 @@ const TodoList = ({
         <TodoItem
           key={todo.id}
           {...todo}
-          onToggleDone={onToggleDone}
+          onToggleisCompleted={onToggleisCompleted}
           onClickDelete={onClickDelete}
           onClickEdit={onClickEdit}
         />

@@ -1,5 +1,5 @@
 import React, {
-  ChangeEvent, memo, useCallback, useState,
+  ChangeEvent, memo, useCallback, useRef, useState,
 } from 'react';
 import styled, { css } from 'styled-components';
 import {
@@ -9,7 +9,7 @@ import {
 import { Todo } from '../../../lib/types/todo.interface';
 
 interface Props {
-  onToggleDone: any;
+  onToggleisCompleted: (id: number) => void;
   onClickDelete: (id: number) => void;
   onClickEdit: any;
 }
@@ -19,12 +19,14 @@ const TodoItem = ({
   todo,
   isCompleted,
   userId,
-  onToggleDone,
+  onToggleisCompleted,
   onClickDelete,
   onClickEdit,
 }: Props & Todo) => {
   const [isEdit, setIsEdit] = useState(false);
   const [editInput, setEditInput] = useState('');
+
+  const editInputRef = useRef<HTMLInputElement>(null);
 
   const onToggleIsEdit = useCallback(() => {
     if (isEdit) {
@@ -33,7 +35,7 @@ const TodoItem = ({
       setEditInput(todo);
     }
     setIsEdit((prev) => !prev);
-  }, [isEdit]);
+  }, [isEdit, todo]);
 
   const onChangeEditInput = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -41,6 +43,11 @@ const TodoItem = ({
   }, []);
 
   const onClickEditTodo = useCallback(() => {
+    if (editInput === '') {
+      alert('할 일을 입력해주세요.');
+      editInputRef.current?.focus();
+      return;
+    }
     onClickEdit(id, editInput);
     onToggleIsEdit();
   }, [editInput]);
@@ -55,6 +62,7 @@ const TodoItem = ({
               value={editInput}
               onChange={onChangeEditInput}
               autoFocus
+              ref={editInputRef}
             />
             <Action onClick={onToggleIsEdit}>
               <MdOutlineClose />
@@ -67,7 +75,7 @@ const TodoItem = ({
           <>
             <CheckCircle
               done={isCompleted}
-              onClick={() => { onToggleDone(id, !isCompleted); }}
+              onClick={() => { onToggleisCompleted(id); }}
             >
               {isCompleted && <MdDone />}
             </CheckCircle>

@@ -1,5 +1,5 @@
 import React, {
-  ChangeEvent, FormEvent, useEffect, useState,
+  ChangeEvent, FormEvent, useCallback, useEffect, useState,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -18,12 +18,12 @@ const TodoPage = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [createInput, setCreateInput] = useState('');
 
-  const onChangeCreateInput = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChangeCreateInput = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setCreateInput(value);
-  };
+  }, []);
 
-  const onSubmitCreate = async (e: FormEvent<HTMLFormElement>) => {
+  const onSubmitCreate = useCallback(async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const { data } = await todoRest.postCreateTodo(createInput);
@@ -32,13 +32,23 @@ const TodoPage = () => {
     } catch (e) {
       alert('할 일 추가에 오류가 발생 했습니다.');
     }
-  };
+  }, [createInput]);
 
-  const onToggleDone = (id: number, done: boolean) => {
-    // TODO: toggle done
-  };
+  const onToggleisCompleted = useCallback(async (id: number) => {
+    const todoItem = todos.find((todo) => todo.id === id);
+    if (!todoItem) return;
+    try {
+      const { data } = await todoRest.putUpdateTodo({
+        ...todoItem,
+        isCompleted: !todoItem.isCompleted,
+      });
+      setTodos((prev) => prev.map((todo) => (todo.id === id ? data : todo)));
+    } catch (e) {
+      alert('할 일 완료에 오류가 발생 했습니다.');
+    }
+  }, [todos]);
 
-  const onClickDelete = async (id: number) => {
+  const onClickDelete = useCallback(async (id: number) => {
     // eslint-disable-next-line no-restricted-globals
     const isConfirm = confirm('정말 삭제 하시겠습니까?');
     if (!isConfirm) {
@@ -50,16 +60,28 @@ const TodoPage = () => {
     } catch (e) {
       alert('할 일 삭제에 오류가 발생 했습니다.');
     }
-  };
+  }, []);
 
-  const onClickEdit = (id: number) => {
-    // TODO: edit todo
-  };
+  const onClickEdit = useCallback(async (id: number, todo: string) => {
+    try {
+      const todoItem = todos.find((todo) => todo.id === id);
+      if (!todoItem) {
+        return;
+      }
+      const { data } = await todoRest.putUpdateTodo({
+        ...todoItem,
+        todo,
+      });
+      setTodos((prev) => prev.map((todo) => (todo.id === id ? data : todo)));
+    } catch (e) {
+      alert('할 일 수정에 오류가 발생 했습니다.');
+    }
+  }, [todos]);
 
-  const onClickLogout = () => {
+  const onClickLogout = useCallback(() => {
     clearAccessToken();
     navigate(PATH.SIGN_IN, { replace: true });
-  };
+  }, [navigate]);
 
   useEffect(() => {
     (async () => {
@@ -91,7 +113,7 @@ const TodoPage = () => {
       <Body>
         <TodoList
           todos={todos}
-          onToggleDone={onToggleDone}
+          onToggleisCompleted={onToggleisCompleted}
           onClickDelete={onClickDelete}
           onClickEdit={onClickEdit}
         />

@@ -19,7 +19,7 @@ export const requestPost = ({ url, headers, data }: { url: string; headers?: any
   },
 });
 
-export const requestPut = ({ url, headers, data }: { url: string; headers?: any, data?: any }) => client.put(url, {
+export const requestPut = ({ url, headers, data }: { url: string; headers?: any, data?: any }) => client.put(url, data, {
   headers: {
     ...headers,
   },
