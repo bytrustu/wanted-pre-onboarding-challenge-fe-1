@@ -1,5 +1,7 @@
 import React, { ChangeEvent, FormEvent, memo } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+
+import { Button } from '../common';
 
 interface Props {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -20,33 +22,19 @@ const TodoCreate = ({
         onChange={onChange}
         value={value}
       />
+      <Button
+        type="submit"
+        disabled={!value}
+        color="primary"
+        style={{ width: 60, marginLeft: 10 }}
+      >
+        추가
+      </Button>
     </CreateForm>
   </CreateContainer>
 );
 
 export default memo(TodoCreate);
-
-const CreateButton = styled.button<{ isOpen: boolean }>`
-  height: 40px;
-  padding: 0 20px;
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  background-color: #2478ff;
-  font-size: 20px;
-  color: white;
-  border-radius: 6px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  z-index: 5;
-  transition: 0.125s all ease-in;
-  ${(props) => props.isOpen && css`
-      background-color: #fff;
-      color: #222;
-    border: 1px solid #ddd;
-  `}
-`;
 
 const CreateContainer = styled.div`
   position: absolute;
@@ -57,6 +45,8 @@ const CreateContainer = styled.div`
 `;
 
 const CreateForm = styled.form`
+  display: flex;
+  flex-direction: row;
   background: #f8f9fa;
   padding: 32px 32px 50px 32px;
   border-bottom-left-radius: 16px;
@@ -68,7 +58,7 @@ const Input = styled.input`
   padding: 12px;
   border-radius: 4px;
   border: 1px solid #dee2e6;
-  width: 100%;
+  width: calc(100% - 80px);
   outline: none;
   font-size: 18px;
   box-sizing: border-box;

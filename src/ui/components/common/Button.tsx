@@ -4,9 +4,10 @@ import styled from 'styled-components';
 interface Props {
   color: 'primary' | 'secondary' | 'danger';
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: (e: any) => void;
   style?: React.CSSProperties;
   children: React.ReactNode;
+  [key: string]: any;
 }
 
 const mappedColor = {
@@ -30,6 +31,7 @@ const Button = ({
   onClick,
   style,
   children,
+  ...props
 }: Props) => (
   <Container
     color={mappedColor[color].color}
@@ -37,6 +39,7 @@ const Button = ({
     disabled={disabled}
     onClick={onClick}
     style={style}
+    {...props}
   >
     <span>{children}</span>
   </Container>
