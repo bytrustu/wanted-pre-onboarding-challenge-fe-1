@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# Wanted 프리온보딩 프론트엔드 인턴쉽
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+Wanted 프리온보딩 프론트엔드 선발 과제 입니다. [링크](https://github.com/walking-sunset/selection-task)
 
-In the project directory, you can run:
+## 필수 요구사항
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 1. 프로젝트 실행 방법
+```bash
+git clone https://github.com/bytrustu/wanted-pre-onboarding-frontend
+cd ./wanted-pre-onboarding-frontend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+npm install
+npm run start
+```
 
-### `npm test`
+### 2. 데모 영상
+[바로가기](https://www.youtube.com/watch?v=X0hQlHZJVPU)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. 링크
+[바로가기](https://splendid-sfogliatella-a90e84.netlify.app/)
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 과제 설명
+1. 회원가입
+   1. 이메일, 비밀번호, 비밀번호 확인을 입력 하여야 합니다.
+   2. 이메일, 비밀번호, 비밀번호 확인는 각각 validation이 적용되어 있습니다.
+      - 이메일: 이메일 형식 검증
+      - 비밀번호: 8자 이상 검증
+      - 비밀번호 확인: 비밀번호와 동일한지 검증
+2. 로그인
+   1. 이메일, 비밀번호를 입력 하여아 합니다.
+   2. 회원가입과 동일한 validation이 적용되어 있습니다.
+3. 투두리스트 등록
+   1. 하단 입력칸에 할 일을 입력 후 Enter 또는 추가 버튼을 클릭 해야 합니다.
+   2. 할 일은 1자 이상 입력해야 합니다.
+4. 투두리스트 삭제
+   1. 투두리스트의 삭제 버튼을 클릭하면 삭제 됩니다.
+5. 투두리스트 완료 수정
+   1. 투두리스트의 완료 버튼을 클릭하면 완료/미완료 상태로 변경 됩니다.
+6. 투두리스트 할 일 수정
+   1. 투두리스트의 수정 버튼을 클릭하면 수정 모드로 변경 됩니다.
+   2. 수정 모드에서는 할 일을 수정 할 수 있습니다.
+   3. 수정 모드에서는 완료 버튼을 클릭하면 수정이 완료 됩니다.
+7. 추가 구현 사항
+   1. 로그인 상태 유지
+      - 로그인 상태를 유지하기 위해 localStorage를 사용하였습니다.
+      - 로그인 시 localStorage에 token을 저장하고, 로그아웃 시 localStorage에서 token을 삭제합니다.
+      - 로그인 상태를 유지하기 위해 App 컴포넌트에서 localStorage를 확인하고, 로그인 상태를 변경합니다.
+      - 로그인 상태가 아닐 경우, 로그인 페이지로 이동합니다.
+      - 로그인 상태일 경우, 로그인 페이지로 이동하면 메인 페이지로 이동합니다.
+      - 로그인 상태일 경우, 회원가입 페이지로 이동하면 로그인 페이지로 이동합니다.
+      - 로그인 상태일 경우, 투두리스트 페이지로 이동하면 로그인 페이지로 이동합니다.
+      - 로그인 상태일 경우, 로그아웃 버튼을 클릭하면 로그아웃이 되고, 로그인 페이지로 이동합니다.
