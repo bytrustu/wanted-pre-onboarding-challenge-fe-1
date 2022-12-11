@@ -38,8 +38,18 @@ const TodoPage = () => {
     // TODO: toggle done
   };
 
-  const onClickDelete = (id: number) => {
-    // TODO: delete todo
+  const onClickDelete = async (id: number) => {
+    // eslint-disable-next-line no-restricted-globals
+    const isConfirm = confirm('정말 삭제 하시겠습니까?');
+    if (!isConfirm) {
+      return;
+    }
+    try {
+      await todoRest.deleteTodo(id);
+      setTodos((prev) => prev.filter((todo) => todo.id !== id));
+    } catch (e) {
+      alert('할 일 삭제에 오류가 발생 했습니다.');
+    }
   };
 
   const onClickEdit = (id: number) => {

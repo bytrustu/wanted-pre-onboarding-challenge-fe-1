@@ -10,10 +10,8 @@ import { Todo } from '../../../lib/types/todo.interface';
 
 interface Props {
   onToggleDone: any;
-  onClickDelete: any;
+  onClickDelete: (id: number) => void;
   onClickEdit: any;
-  // onToggleDone: (id: number, done: boolean) => void;
-  // onClickDelete: (id: number) => void;
 }
 
 const TodoItem = ({
