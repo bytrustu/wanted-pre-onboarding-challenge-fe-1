@@ -113,6 +113,7 @@
     "react/no-unused-prop-types": "off",
     "react/require-default-props": "off",
     "react/function-component-definition": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "no-alert": "off"
   }
 }
