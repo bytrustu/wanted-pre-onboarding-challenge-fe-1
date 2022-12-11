@@ -2,8 +2,8 @@ import React, { ChangeEvent, memo, KeyboardEvent } from 'react';
 import styled from 'styled-components';
 
 interface Props {
-  label: string;
-  id: string;
+  label?: string;
+  id?: string;
   type: 'email' | 'password' | 'text';
   value: string;
   validation?: boolean;
@@ -13,6 +13,7 @@ interface Props {
     message: string;
   };
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
+  containerStyle?: React.CSSProperties;
   [key: string]: any;
 }
 
@@ -25,9 +26,10 @@ const TextField = ({
   onChange,
   error,
   onKeyDown,
+  containerStyle,
   ...props
 }: Props) => (
-  <Container>
+  <Container style={containerStyle}>
     <InputLabel htmlFor={id}>{label}</InputLabel>
     <Input
       id={id}
