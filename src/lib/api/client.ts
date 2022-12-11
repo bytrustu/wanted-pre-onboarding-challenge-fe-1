@@ -13,7 +13,7 @@ export const requestGet = ({ url, headers }: { url: string; headers?: any }) => 
   },
 });
 
-export const requestPost = ({ url, headers, data }: { url: string; headers?: any, data: any }) => client.post(url, data, {
+export const requestPost = ({ url, headers, data }: { url: string; headers?: any, data?: any }) => client.post(url, data, {
   headers: {
     ...headers,
   },

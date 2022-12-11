@@ -11,6 +11,7 @@ import { Todo } from '../../lib/types/todo.interface';
 import { Button, Flex } from '../components/common';
 import TodoCreate from '../components/todo/TodoCreate';
 import TodoList from '../components/todo/TodoList';
+import todoRest from '../../lib/api/todoRest';
 
 const TodoPage = () => {
   const navigate = useNavigate();
@@ -22,10 +23,15 @@ const TodoPage = () => {
     setCreateInput(value);
   };
 
-  const onSubmitCreate = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmitCreate = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: create todo
-    setCreateInput('');
+    try {
+      const { data } = await todoRest.postCreateTodo(createInput);
+      setTodos((prev) => [...prev, data]);
+      setCreateInput('');
+    } catch (e) {
+      alert('할 일 추가에 오류가 발생 했습니다.');
+    }
   };
 
   const onToggleDone = (id: number, done: boolean) => {
@@ -46,7 +52,14 @@ const TodoPage = () => {
   };
 
   useEffect(() => {
-    // TODO: get todos
+    (async () => {
+      try {
+        const { data } = await todoRest.getTodos();
+        setTodos(data);
+      } catch (e) {
+        alert('할 일 목록을 가져오는데 오류가 발생 했습니다.');
+      }
+    })();
   }, []);
 
   return (
